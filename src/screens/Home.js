@@ -1,11 +1,11 @@
 import styled from "styled-components";
+import { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faExternalLinkAlt } from "@fortawesome/free-solid-svg-icons";
 
-import Topbar from "../components/Topbar";
-import Footer from "../components/Footer";
-
 import Banner from "../banner.png";
+
+const XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
 
 const Container = styled.div`
 	width: 85%;
@@ -116,7 +116,36 @@ const PieceLabel = styled.p`
 	margin-top: 0px;
 `;
 
+const url = "https://testnets-api.opensea.io/graphql/";
+const data =
+	'{"id":"collectionQuery","query":"query collectionQuery( $collection: CollectionSlug! ) { collection(collection: $collection) {  ...CollectionInfoBar_data } } fragment CollectionInfoBar_data on CollectionType { stats { averagePrice numOwners sevenDayVolume totalSupply totalVolume } }","variables":{"collection":"gweiface"}}';
+const timeout = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+
+const fetchData = async (setCollectionData, state) => {
+	state === true ? await timeout(0) : await timeout(60000);
+	var xhr = new XMLHttpRequest();
+	xhr.open("POST", url);
+
+	xhr.setRequestHeader("Content-Type", "application/json");
+
+	xhr.onreadystatechange = function () {
+		if (xhr.readyState === 4) {
+			console.log(xhr.status);
+			console.log(xhr.responseText);
+		}
+	};
+
+	setCollectionData(xhr.send(data));
+	fetchData(setCollectionData, false);
+};
+
 const Home = () => {
+	const [collectionData, setCollectionData] = useState(null);
+
+	useEffect(() => {
+		fetchData(setCollectionData, true);
+	}, []);
+
 	return (
 		<section>
 			<div
@@ -259,14 +288,18 @@ const Home = () => {
 					and join our{" "}
 					<LinkHighlight>
 						<Link
-							href="https://twitter.com/gweiFaceNFT"
+							href="https://discord.gg/T5yTHunCfW"
 							target="_blank"
 							rel="noreferrer"
 						>
 							Discord
 						</Link>
 					</LinkHighlight>{" "}
-					<Link>
+					<Link
+						href="https://discord.gg/T5yTHunCfW"
+						target="_blank"
+						rel="noreferrer"
+					>
 						<FontAwesomeIcon
 							icon={faExternalLinkAlt}
 							style={{

@@ -41,15 +41,25 @@ const Footer = () => {
 				}}
 			></div>
 			<Container>
-				<FontAwesomeIcon
-					icon={["fab", "discord"]}
-					style={{
-						fontSize: "35px",
-						margin: "0 5px",
-						color: "rgb(114, 137, 217)",
-					}}
-				/>
-				<a href="https://twitter.com/gweiFaceNFT" target="_blank">
+				<a
+					href="https://discord.gg/T5yTHunCfW"
+					target="_blank"
+					rel="noreferrer"
+				>
+					<FontAwesomeIcon
+						icon={["fab", "discord"]}
+						style={{
+							fontSize: "35px",
+							margin: "0 5px",
+							color: "rgb(114, 137, 217)",
+						}}
+					/>
+				</a>
+				<a
+					href="https://twitter.com/gweiFaceNFT"
+					target="_blank"
+					rel="noreferrer"
+				>
 					<FontAwesomeIcon
 						icon={["fab", "twitter-square"]}
 						style={{
@@ -61,8 +71,8 @@ const Footer = () => {
 				</a>
 			</Container>
 			<Copyright>
-				IndexLabs LLC DBA gweiFace
-				<br /> © 2021 IndexLabs LLC
+				Index Labs LLC DBA gweiFace
+				<br /> © 2021 Index Labs LLC
 			</Copyright>
 		</Wrapper>
 	);

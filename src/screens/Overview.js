@@ -21,14 +21,19 @@ const ContentContainer = styled(Container)`
 	justify-content: space-between;
 	align-items: start;
 	width: 75%;
+	flex-wrap: wrap;
 
 	@media (max-width: 1200px) {
-		flex-wrap: wrap;
 		width: 85%;
 	}
 `;
 
 const CategoryContainer = styled.div`
+	width: 15%;
+	margin: 0px 10px;
+	@media (max-width: 1200px) {
+		width: 35%;
+	}
 	@media (max-width: 600px) {
 		width: 80%;
 		margin: 0 auto;
@@ -78,18 +83,6 @@ const Link = styled.a`
 		text-decoration: underline;
 		color: rgb(107, 3, 252);
 	}
-`;
-
-const CategoryUl = styled.ul`
-	text-align: left;
-	@media (max-width: 600px) {
-		margin: auto;
-		padding: 0px 20px;
-	}
-`;
-
-const CategoryListEl = styled.li`
-	font-size: 20px;
 `;
 
 const components = [
@@ -149,8 +142,8 @@ const components = [
 		"Backgrounds",
 		[
 			"Triangles",
-			"Squares",
 			"Circles",
+			"Squares",
 			"Wings",
 			"Tiles",
 			"Snowed In",
@@ -159,7 +152,7 @@ const components = [
 			"Sun and Moon",
 			"gweiFace",
 		],
-		[1500, 1490, 1500, 900, 900, 900, 800, 750, 750, 499],
+		[1500, 1500, 1490, 900, 900, 900, 800, 750, 750, 499],
 	],
 ];
 
@@ -182,18 +175,28 @@ const Overview = () => {
 					return (
 						<CategoryContainer>
 							<CategoryHeading>{component[0]}</CategoryHeading>
-							<CategoryUl>
+							<div>
 								{component[1].map((name, idx) => {
 									return (
-										<CategoryListEl>
-											{name} -{" "}
+										<div
+											style={{
+												display: "flex",
+												justifyContent: "space-between",
+												alignItems: "center",
+												margin: "-20px 0",
+												fontSize: "20px",
+											}}
+										>
+											<p style={{ textAlign: "left" }}>
+												{name}
+											</p>
 											<Highlight>
 												{component[2][idx]}
 											</Highlight>
-										</CategoryListEl>
+										</div>
 									);
 								})}
-							</CategoryUl>
+							</div>
 						</CategoryContainer>
 					);
 				})}
@@ -240,12 +243,11 @@ const Overview = () => {
 					page
 				</Asterisk>
 				<Asterisk>
-					*All following categories <Highlight>EXCLUDING</Highlight>{" "}
-					faces are for rarities of the first{" "}
-					<Highlight>9,989</Highlight> gweiFaces. The remaining 10
-					gweiFaces will come from{" "}
-					<Highlight>specially curated</Highlight> faces at the end of
-					our sale.
+					**All <Highlight>non-face</Highlight> categories display
+					rarities of the first <Highlight>9,989</Highlight>{" "}
+					gweiFaces. The remaining <Highlight>10</Highlight> gweiFaces
+					will be <Highlight>specially curated</Highlight> towards the
+					end of our sale.
 				</Asterisk>
 				<img
 					src={annotation}

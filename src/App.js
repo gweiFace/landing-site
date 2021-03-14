@@ -11,6 +11,8 @@ import Footer from "./components/Footer";
 // screens
 import Home from "./screens/Home";
 import Overview from "./screens/Overview";
+import Detail from "./screens/Detail";
+import Gallery from "./screens/Gallery";
 
 library.add(fab);
 function App() {
@@ -24,7 +26,10 @@ function App() {
 				<Route path="/overview">
 					<Overview />
 				</Route>
-				<Route path="/gallery"></Route>
+				<Route path="/gallery">
+					<Gallery />
+				</Route>
+				<Route path="/details/:tokenid" children={<Detail />}></Route>
 			</Switch>
 			<Footer />
 		</Router>
