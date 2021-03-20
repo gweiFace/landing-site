@@ -355,8 +355,8 @@ const Home = () => {
 					<PieceItem>
 						<PieceCount>
 							{collectionData
-								? collectionData.data.collection.stats
-										.totalVolume
+								? (collectionData.data.collection.stats
+										.totalVolume).toFixed(3)
 								: "~"}
 							x
 						</PieceCount>
