@@ -116,7 +116,7 @@ const PieceLabel = styled.p`
 	margin-top: 0px;
 `;
 
-const url = "https://testnets-api.opensea.io/graphql/";
+const url = "https://api.opensea.io/graphql/";
 const data =
 	'{"id":"collectionQuery","query":"query collectionQuery( $collection: CollectionSlug! ) { collection(collection: $collection) {  ...CollectionInfoBar_data } } fragment CollectionInfoBar_data on CollectionType { stats { averagePrice numOwners sevenDayVolume totalSupply totalVolume } }","variables":{"collection":"gweiface"}}';
 const timeout = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
@@ -130,14 +130,19 @@ const fetchData = async (setCollectionData, state) => {
 
 	xhr.onreadystatechange = function () {
 		if (xhr.readyState === 4) {
-			console.log(xhr.status);
-			console.log(xhr.responseText);
+			setCollectionData(JSON.parse(xhr.responseText));
 		}
 	};
 
-	setCollectionData(xhr.send(data));
+	xhr.send(data);
 	fetchData(setCollectionData, false);
 };
+
+const Slider = () => {
+	return (
+		<div></div>
+	)
+}
 
 const Home = () => {
 	const [collectionData, setCollectionData] = useState(null);
@@ -145,6 +150,10 @@ const Home = () => {
 	useEffect(() => {
 		fetchData(setCollectionData, true);
 	}, []);
+
+	useEffect(() => {
+		console.log(collectionData)
+	}, [collectionData])
 
 	return (
 		<section>
@@ -172,7 +181,7 @@ const Home = () => {
 					>
 						gweiFace
 					</Highlight>{" "}
-					- Coming Soon
+					- LIVE!
 				</h1>
 			</div>
 			<PrimaryHeading>Project Insight</PrimaryHeading>
@@ -189,7 +198,12 @@ const Home = () => {
 			</GreyContainer>
 			<Container>
 				<div style={{ padding: "10px 0px" }}>
-					<Button>TO MARKETPLACE</Button>
+					<Button
+						href="https://opensea.io/assets/gweiface?search[resultModel]=ASSETS"
+						target="blank"
+					>
+						TO MARKETPLACE
+					</Button>
 				</div>
 			</Container>
 
@@ -241,7 +255,7 @@ const Home = () => {
 					such as{" "}
 					<LinkHighlight>
 						<Link
-							href="https://opensea.io/"
+							href="https://opensea.io/collection/gweiface"
 							target="_blank"
 							rel="noreferrer"
 						>
@@ -249,7 +263,7 @@ const Home = () => {
 						</Link>
 					</LinkHighlight>{" "}
 					<Link
-						href="https://opensea.io/"
+						href="https://opensea.io/collection/gweiface"
 						target="_blank"
 						rel="noreferrer"
 					>
@@ -313,8 +327,52 @@ const Home = () => {
 			</GreyContainer>
 			<Container>
 				<h1>Collection Stats</h1>
+				<PieceWrapper>
+					<PieceItem>
+						<PieceCount>
+							{collectionData
+								? Math.floor(
+										collectionData.data.collection.stats
+											.totalSupply
+								  )
+								: "~"}
+							x
+						</PieceCount>
+						<PieceLabel>Pieces</PieceLabel>
+					</PieceItem>
+					<PieceItem>
+						<PieceCount>
+							{collectionData
+								? Math.floor(
+										collectionData.data.collection.stats
+											.numOwners
+								  )
+								: "~"}
+							x
+						</PieceCount>
+						<PieceLabel>Owners</PieceLabel>
+					</PieceItem>
+					<PieceItem>
+						<PieceCount>
+							{collectionData
+								? collectionData.data.collection.stats
+										.totalVolume
+								: "~"}
+							x
+						</PieceCount>
+						<PieceLabel>
+							<FontAwesomeIcon icon={["fab", "ethereum"]} />{" "}
+							Traded
+						</PieceLabel>
+					</PieceItem>
+				</PieceWrapper>
 				<div style={{ padding: "10px 0px" }}>
-					<Button>TO MARKETPLACE</Button>
+					<Button
+						href="https://opensea.io/collection/gweiface"
+						target="blank"
+					>
+						TO COLLECTION
+					</Button>
 				</div>
 			</Container>
 
@@ -329,6 +387,14 @@ const Home = () => {
 			</GreyContainer>
 			<Container>
 				<h1>Live Sales</h1>
+				<Slider />
+				<div>
+					<p>Coming soon...</p>
+					<div className="background">
+						<div className="foreground"></div>
+						<div className="loc"></div>
+					</div>
+				</div>
 				<div style={{ padding: "10px 0px" }}>
 					<Button href="/gallery">TO GALLERY</Button>
 				</div>

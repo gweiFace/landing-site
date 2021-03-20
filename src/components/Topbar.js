@@ -82,29 +82,48 @@ const NavItem = (props) => {
 
 const Topbar = () => {
 	return (
-		<Wrapper>
-			<Container>
+		<>
+			<p style={{ backgroundColor: "rgb(107,3,252)", color: "white", fontSize: "30px", textAlign: "center", padding: "10px 0px", margin: 0 }}>
+				gweiFace is now live!{" "}
+				<a
+					href="https://opensea.io/collection/gweiface"
+					target="blank"
+					rel="noreferrer"
+					style={{fontWeight: "bold", color: "black", textDecoration: "none"}}
+				>
+					{">>"}SHOP{"<<"}
+				</a>
+			</p>
+			<Wrapper>
 				<Container>
-					<Logo src={logo} alt="Logo" />
-					<LogoText>
-						<NavLink
-							to="/"
-							style={{ color: "black", textDecoration: "none" }}
+					<Container>
+						<Logo src={logo} alt="Logo" />
+						<LogoText>
+							<NavLink
+								to="/"
+								style={{
+									color: "black",
+									textDecoration: "none",
+								}}
+							>
+								gweiFace
+							</NavLink>
+						</LogoText>
+					</Container>
+					<Container>
+						<NavItem path="/" text="Home" />
+						<NavItem path="/overview" text="Overview" />
+						<NavItem path="/gallery" text="Gallery" />
+						<Button
+							href="https://opensea.io/collection/gweiface"
+							target="_blank"
 						>
-							gweiFace
-						</NavLink>
-					</LogoText>
+							Marketplace
+						</Button>
+					</Container>
 				</Container>
-				<Container>
-					<NavItem path="/" text="Home" />
-					<NavItem path="/overview" text="Overview" />
-					<NavItem path="/gallery" text="Gallery" />
-					<Button href="https://opensea.io/" target="_blank">
-						Marketplace
-					</Button>
-				</Container>
-			</Container>
-		</Wrapper>
+			</Wrapper>
+		</>
 	);
 };
 
