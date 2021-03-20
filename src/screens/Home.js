@@ -386,13 +386,45 @@ const Home = () => {
 				</Heading>
 			</GreyContainer>
 			<Container>
-				<h1>Live Sales</h1>
+				<h1>Live Releases</h1>
 				<Slider />
-				<div>
-					<p>Coming soon...</p>
-					<div className="background">
-						<div className="foreground"></div>
-						<div className="loc"></div>
+				<div
+					className="background"
+					style={{
+						height: "15px",
+						margin: "0 50px",
+						backgroundColor: "rgb(240, 240, 240",
+						borderRadius: "10px",
+						display: "flex",
+						alignItems: "center",
+						marginBottom: "20px",
+					}}
+				>
+					<div
+						className="foreground"
+						style={{
+							height: "100%",
+							width: `${
+								collectionData
+									? collectionData.data.collection.stats
+											.totalSupply / 99.99
+									: "100"
+							}%`,
+							backgroundColor: "rgb(107, 3, 252)",
+							borderRadius: "10px",
+						}}
+					></div>
+					<div>
+						<div
+							className="loc"
+							style={{
+								height: "20px",
+								width: "20px",
+								backgroundColor: "rgb(107, 3, 252)",
+								borderRadius: "50%",
+								marginLeft: "-10px",
+							}}
+						></div>
 					</div>
 				</div>
 				<div style={{ padding: "10px 0px" }}>

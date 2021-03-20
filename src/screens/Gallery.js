@@ -68,8 +68,10 @@ const options = {
 
 const OptionController = (props) => {
 	return (
-		<div>
+		<div style={{margin: "0px 5px", textAlign: "center"}}>
+			<p style={{margin: 0}}>{props.category}</p>
 			<select
+				id={props.category}
 				value={props.value}
 				onChange={(e) => {
 					props.setValue(e.target.value);
@@ -138,8 +140,15 @@ const Gallery = () => {
 				padding: "20px",
 			}}
 		>
-			<div style={{ display: "flex", justifyContent: "space-between" }}>
-				<div style={{ display: "flex" }}>
+			<div
+				style={{
+					display: "flex",
+					flexWrap: "wrap",
+					justifyContent: "space-between",
+					alignItems: "center",
+				}}
+			>
+				<div style={{ display: "flex", flexWrap: "wrap" }}>
 					<OptionController
 						value={face}
 						setValue={setFace}
@@ -166,42 +175,78 @@ const Gallery = () => {
 						category="backgrounds"
 					/>
 				</div>
-				<div style={{ display: "flex" }}>
-					<button
-						onClick={() => {
-							if (gallery && page > 0) {
-								setPage(page - 1);
-							}
-						}}
-					>
-						Prev
-					</button>
-					<p>{page + 1}</p>
-					<button
-						onClick={() => {
-							if (
-								gallery &&
-								(page + 1) * entriesPerPage < gallery.length
-							) {
-								setPage(page + 1);
-							}
-						}}
-					>
-						Next
-					</button>
-				</div>
-				<div style={{ display: "flex" }}>
-					{entries.map((val) => {
-						return (
-							<button
-								onClick={() => {
-									setEntriesPerPage(val);
-								}}
-							>
-								{val}
-							</button>
-						);
-					})}
+				<div>
+					<div style={{ display: "flex", alignItems: "center" }}>
+						<h3
+							style={{
+								margin: "0",
+								marginRight: "10px",
+								color: "rgb(107, 3, 252)",
+								cursor: "pointer",
+							}}
+							onClick={() => {
+								if (gallery && page > 0) {
+									setPage(page - 1);
+								}
+							}}
+						>
+							{"<"}
+						</h3>
+						<h3
+							style={{
+								margin: "0",
+							}}
+						>
+							{" "}
+							{page + 1}{" "}
+						</h3>
+						<h3
+							style={{
+								margin: "0",
+								marginLeft: "10px",
+								color: "rgb(107, 3, 252)",
+								cursor: "pointer",
+							}}
+							onClick={() => {
+								if (
+									gallery &&
+									(page + 1) * entriesPerPage < gallery.length
+								) {
+									setPage(page + 1);
+								}
+							}}
+						>
+							{">"}
+						</h3>
+					</div>
+					<div style={{ display: "flex" }}>
+						{entries.map((val) => {
+							return (
+								<h3
+									style={{
+										margin: "0",
+										cursor: "pointer",
+										padding: "5px",
+										textAlign: "center",
+										fontWeight: "bold",
+										textDecoration:
+											entriesPerPage === val
+												? "underline"
+												: "none",
+										color:
+											entriesPerPage === val
+												? "rgb(107, 3, 252)"
+												: "black",
+									}}
+									onClick={() => {
+										setEntriesPerPage(val);
+									}}
+								>
+									{val}
+								</h3>
+							);
+						})}
+					</div>
 				</div>
 			</div>
 

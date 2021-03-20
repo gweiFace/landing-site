@@ -50,7 +50,7 @@ const ListEl = styled(Text)`
 
 const Button = styled.a`
 	font-size: 20px;
-	font-weight: 600px;
+	font-weight: 600;
 	text-decoration: none;
 	border-radius: 20px;
 	padding: 10px; 20px;
@@ -83,7 +83,7 @@ const NavItem = (props) => {
 const Topbar = () => {
 	return (
 		<>
-			<p style={{ backgroundColor: "rgb(107,3,252)", color: "white", fontSize: "30px", textAlign: "center", padding: "10px 0px", margin: 0 }}>
+			<p style={{ backgroundColor: "rgb(107,3,252)", color: "white", fontSize: "30px", textAlign: "center", padding: "10px 0px", margin: 0, width: "100%" }}>
 				gweiFace is now live!{" "}
 				<a
 					href="https://opensea.io/collection/gweiface"
@@ -118,7 +118,7 @@ const Topbar = () => {
 							href="https://opensea.io/collection/gweiface"
 							target="_blank"
 						>
-							Marketplace
+							SHOP
 						</Button>
 					</Container>
 				</Container>
